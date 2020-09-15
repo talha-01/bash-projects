@@ -1,4 +1,5 @@
 #!/bin/bash
+
 security_groups=$( aws ec2 describe-security-groups \
 | grep GroupName | cut -d'"' -f4 )
 
@@ -72,10 +73,7 @@ else
         aws ec2 create-key-pair --key-name $key_name --query 'KeyMaterial' --output text > ~/.aws/keys/$key_name.pem
         chmod 400 ~/.aws/keys/$key_name.pem
     fi
-fi 
-echo $keys_array
-echo $key_name
-echo $security_group
+fi
 
 aws ec2 run-instances \
 --image-id ami-0c94855ba95c71c99 \
