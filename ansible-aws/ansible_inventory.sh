@@ -120,7 +120,7 @@ echo '[webservers]' > $(pwd)/inventory
 for node in ${dns_names[*]}
 do
     node=${dns_names[$count]}
-    echo """Node$count ansible_host=$(echo $node | tr -d "[:space:]") ansible_user=ec2-user ansible_ssh_private_key_file=~/.aws/keys/$key_name.pem""" >> $(pwd)/inventory
+    echo """node$count ansible_host=$(echo $node | tr -d "[:space:]") ansible_user=ec2-user ansible_ssh_private_key_file=~/.aws/keys/$key_name.pem""" >> $(pwd)/inventory
     let count++
 done
 rm -rf key_pairs.txt
