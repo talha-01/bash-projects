@@ -124,7 +124,7 @@ do
     let count++
 done
 rm -rf key_pairs.txt
-echo "Inventory is created successfully\n"
-echo "File location ::: $(pwd)/inventory\n"
+echo "Inventory is created successfully"
+echo "File location ::: $(pwd)/inventory"
 echo "Listing your nodes"
 ansible -i $(pwd)/inventory all --list-hosts
