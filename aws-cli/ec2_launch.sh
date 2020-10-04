@@ -77,7 +77,7 @@ else
 fi
 
 aws ec2 run-instances \
---image-id ami-0c94855ba95c71c99 \
+--image-id ami-0947d2ba12ee1ff75 \
 --count 1 \
 --instance-type t2.micro \
 --key-name $key_name \
