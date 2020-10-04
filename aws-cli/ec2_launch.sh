@@ -61,11 +61,12 @@ else
         echo "You have ${#keys_array[*]} key-pairs: "
         
         count=1
-        for key in $keys_array;
+        for key in ${keys_array[*]};
         do
             echo "$count- $key"
             let count++
         done
+        echo $keys_array
         read -p "Please enter the order number of one key-pair _ " order
         key_name=${keys_array[$order]}
     else
@@ -81,3 +82,5 @@ aws ec2 run-instances \
 --instance-type t2.micro \
 --key-name $key_name \
 --security-groups $security_group
+
+rm -rf key_pairs.txt ins_names.txt
