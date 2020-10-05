@@ -119,7 +119,7 @@ count=1
 echo '[webservers]' > $(pwd)/inventory
 for node in ${dns_names[*]}
 do
-    node=${dns_names[$count]}
+    node="${dns_names[$count]}"
     echo """node$count ansible_host=$(echo $node | tr -d "[:space:]") ansible_user=ec2-user ansible_ssh_private_key_file=~/.aws/keys/$key_name.pem""" >> $(pwd)/inventory
     let count++
 done
