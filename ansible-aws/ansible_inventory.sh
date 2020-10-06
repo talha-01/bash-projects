@@ -146,7 +146,7 @@ do
     --instance-type t2.micro \
     --key-name $key_name \
     --security-groups $security_group \
-    --tag-specifications "ResourceType=instance,Tags=[{Key=Ansible,Value=Node${i}}]" 1> /dev/null
+    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=Node${i}},{Key=Ansible,Value=True}]" 1> /dev/null
 
     if [ ! $? -eq 0 ]; 
     then
@@ -167,7 +167,7 @@ while :
 do
     for (( i=1; i<=$num; i++ ))
     do
-        dns_name=$(aws ec2 describe-instances --filter "Name=tag:Ansible,Values=Node${i}" --query=Reservations[*].Instances[*].[PublicDnsName] --output text)
+        dns_name=$(aws ec2 describe-instances --filter "Name=tag:Name,Values=Node${i}" "Name=tag:Ansible,Values=True" --query=Reservations[*].Instances[*].[PublicDnsName] --output text)
         dns_names[$count]=$dns_name
         let count++
     done
