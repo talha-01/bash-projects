@@ -71,9 +71,8 @@ clear
 
             for port in $ports;
             do 
-                echo """aws ec2 authorize-security-group-ingress --group-name $sg_name \
-                --protocol tcp --port $port --cidr "0.0.0.0/0"
-                """
+                aws ec2 authorize-security-group-ingress --group-name $sg_name \
+                --protocol tcp --port $port --cidr "0.0.0.0/0" > /dev/null
             done
 
             security_group=$sg_name
